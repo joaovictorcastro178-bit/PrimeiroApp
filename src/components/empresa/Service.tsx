@@ -1,17 +1,34 @@
 import {
+    Image,
+    ImageSourcePropType,
     StyleSheet,
     Text,
-    View,
+    View
 } from 'react-native';
 
-export default function Service() {
+type Props = {
+    titulo: string;
+    descricao: string;
+    imagem?: ImageSourcePropType;
+    preco?: string;
+};
+
+export default function Service({ titulo, descricao, imagem, preco }: Props) {
     return(
         <View style={styles.card}>
             <Text style={styles.titulo}>
-                Culinaria arabe, uma das mais antigas e ricas do mundo. 
+                {titulo}
             </Text>
+            {imagem && (
+                <Image source={imagem} style={styles.logo} />
+            )}
+            {preco && (
+                <Text style={styles.preco}>
+                    {preco}
+                </Text>
+            )}
             <Text style={styles.descricao}>
-                A culinária árabe é conhecida por seus sabores intensos e aromáticos, com o uso de especiarias como cominho, coentro, açafrão e canela. Pratos como falafel, hummus, tabule e kebabs são apenas algumas das delícias que podem ser encontradas na cozinha árabe.
+                {descricao}
             </Text>
         </View>
     );
@@ -25,15 +42,35 @@ export default function Service() {
     borderWidth: 1,
     borderColor: '#000000',
   },
-  titulo: {
-    fontSize: 18,
+    titulo: {
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#ffffff',
     marginBottom: 8,
+    alignSelf: 'center',
   },
-descricao: {
-    fontSize: 15,
+    descricao: {
+    fontSize: 25,
     color: '#a7a7aa',
     lineHeight: 23,
+    alignSelf: 'center',
+    
   },
+      logo: {
+        width: 200,
+        height: 200,
+        alignSelf: 'center',
+        borderWidth: 1,
+        borderColor: '#000000',
+        borderRadius: 12,
+        marginBottom: 8,
+    },
+    preco: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        alignSelf: 'center',
+        marginTop: 8,
+    }
+
 });
